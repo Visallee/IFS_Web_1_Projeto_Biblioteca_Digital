@@ -16,3 +16,52 @@ Siga o passo a passo abaixo para rodar a aplicação na sua máquina:
 1. Clone este repositório:
    ```bash
    git clone [https://github.com/Visallee/IFS_Web_1_Projeto_Biblioteca_Digital.git](https://github.com/Visallee/IFS_Web_1_Projeto_Biblioteca_Digital.git)
+   ```
+2. Acesse a pasta do projeto:
+   ```bash
+   cd IFS_Web_1_Projeto_Biblioteca_Digital
+   ```
+3. Crie e ative o ambiente virtual:
+   ```bash
+   python -m venv .venv
+   # No Windows:
+   .venv\Scripts\activate
+   # No Linux/Mac:
+   source .venv/bin/activate
+   ```
+4. Instale as dependências:
+   ```bash
+   pip install -r requirements.txt
+   ```
+5. Aplique as migrações do banco de dados:
+   ```bash
+   python manage.py migrate
+   ```
+6. Inicie o servidor local:
+   ```bash
+   python manage.py runserver
+   ```
+7. Acesse no navegador: `http://127.0.0.1:8000/`
+
+## 📋 Requisitos Funcionais Implementados
+
+* **RF01 - Autenticação:** Cadastro, login e logout utilizando o sistema nativo do Django.
+* **RF02 - Perfil:** Tela para visualização e edição dos dados do usuário autenticado.
+* **RF03 - Modelo Central:** Entidade `Livro` com mais de 5 campos (título, autor, isbn, ano_publicacao, editora, quantidade_disponivel).
+* **RF04 - CRUD Completo:** Listagem, criação, edição e exclusão de Livros restritos a usuários logados.
+* **RF05 - Relacionamentos:** Relacionamento entre `Livro` e `Categoria` (ForeignKey/ManyToMany) e `Livro` e `Usuario` (através de Empréstimos).
+* **RF06 - Formulários:** Utilização de ModelForms com validações customizadas.
+* **RF07 - Busca/Filtro:** Barra de pesquisa funcional na listagem de livros via parâmetro GET.
+* **RF08 - Controle de Acesso:** Views protegidas pelo `@login_required` e validação para garantir que apenas quem criou um registro possa excluí-lo (quando aplicável).
+* **RF09 - Templates:** Uso de herança com `base.html`, feedback com Django Messages e layout responsivo.
+* **RF10 - Migrations:** Banco de dados SQLite funcional e estruturado.
+
+## 📸 Capturas de Tela
+
+*(Substitua os links abaixo pelas imagens reais da aplicação após o desenvolvimento)*
+
+![Tela Inicial](link_da_imagem_1.png)
+*Página inicial com a listagem do acervo.*
+
+![Tela de Cadastro](link_da_imagem_2.png)
+*Formulário de cadastro de novo livro.*
