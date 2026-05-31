@@ -33,7 +33,7 @@ Siga o passo a passo abaixo para rodar a aplicação na sua máquina:
    ```bash
    pip install -r requirements.txt
    ```
-5. Aplique as migrações do banco de dados:
+5. Aplique as migrações do banco de dados (os dados iniciais já serão carregados automaticamente):
    ```bash
    python manage.py migrate
    ```
@@ -54,14 +54,12 @@ Siga o passo a passo abaixo para rodar a aplicação na sua máquina:
 * **RF07 - Busca/Filtro:** Barra de pesquisa funcional na listagem de livros via parâmetro GET.
 * **RF08 - Controle de Acesso:** Views protegidas pelo `@login_required` e validação para garantir que apenas quem criou um registro possa excluí-lo (quando aplicável).
 * **RF09 - Templates:** Uso de herança com `base.html`, feedback com Django Messages e layout responsivo.
-* **RF10 - Migrations:** Banco de dados SQLite funcional e estruturado.
+* **RF10 - Migrations:** Banco de dados SQLite funcional. Os dados iniciais de testes (categorias e livros) são carregados automaticamente de forma inteligente utilizando Data Migrations.
 
 ## 📸 Capturas de Tela
 
-*(Substitua os links abaixo pelas imagens reais da aplicação após o desenvolvimento)*
-
-![Tela Inicial](link_da_imagem_1.png)
+![Tela Inicial](C:\Users\visal\PycharmProjects\DjangoProject\images\tela_inicial.png)
 *Página inicial com a listagem do acervo.*
 
-![Tela de Cadastro](link_da_imagem_2.png)
-*Formulário de cadastro de novo livro.*
+![Tela de Cadastro](C:\Users\visal\PycharmProjects\DjangoProject\images\tela_cadastro.png)
+*Formulário de cadastro de novo livro e validações.*
