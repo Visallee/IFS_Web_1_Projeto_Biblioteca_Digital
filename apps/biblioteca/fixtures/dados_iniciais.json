@@ -1,0 +1,6 @@
+[
+  {"model": "biblioteca.categoria", "pk": 1, "fields": {"nome": "Literatura Brasileira", "descricao": "Obras de autores brasileiros"}},
+  {"model": "biblioteca.categoria", "pk": 2, "fields": {"nome": "Ficção Científica", "descricao": "Obras de ficção científica"}},
+  {"model": "biblioteca.categoria", "pk": 3, "fields": {"nome": "Programação", "descricao": "Livros técnicos de programação"}},
+  {"model": "biblioteca.categoria", "pk": 4, "fields": {"nome": "História", "descricao": "Livros de história"}}
+]

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block titulo %}Meus Empréstimos{% endblock %}
+{% block conteudo %}
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+    <h1>Meus Empréstimos</h1>
+    <a href="{% url 'biblioteca:criar_emprestimo' %}" class="btn btn-success">+ Novo Empréstimo</a>
+</div>
+
+{% if emprestimos %}
+    <div class="card">
+        <table class="tabela">
+            <thead>
+                <tr><th>Livro</th><th>Emprestado em</th><th>Devolução Prevista</th><th>Status</th><th>Ação</th></tr>
+            </thead>
+            <tbody>
+                {% for e in emprestimos %}
+                    <tr>
+                        <td><a href="{% url 'biblioteca:detalhe_livro' e.livro.pk %}">{{ e.livro.titulo }}</a></td>
+                        <td>{{ e.data_emprestimo|date:"d/m/Y" }}</td>
+                        <td>{{ e.data_devolucao_prevista|date:"d/m/Y" }}</td>
+                        <td><span class="badge badge-{{ e.status }}">{{ e.get_status_display }}</span></td>
+                        <td>
+                            {% if e.status == 'ativo' %}
+                                <a href="{% url 'biblioteca:devolver_livro' e.pk %}" class="btn btn-primary" style="font-size:0.82rem; padding:0.3rem 0.7rem;">Devolver</a>
+                            {% else %}—{% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="card" style="text-align:center; padding:3rem;">
+        <p style="font-size:3rem;">📭</p>
+        <p>Você não tem nenhum empréstimo.</p>
+        <a href="{% url 'biblioteca:lista_livros' %}" class="btn btn-primary" style="margin-top:1rem;">Ver acervo</a>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block titulo %}Devolver Livro{% endblock %}
+{% block conteudo %}
+<div style="max-width:480px; margin:0 auto;">
+    <div class="card">
+        <h1>Confirmar Devolução</h1>
+        <p style="margin:1rem 0;">Devolver o livro <strong>"{{ emprestimo.livro.titulo }}"</strong>?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Confirmar Devolução</button>
+            <a href="{% url 'biblioteca:meus_emprestimos' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
