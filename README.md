@@ -58,8 +58,8 @@ Siga o passo a passo abaixo para rodar a aplicação na sua máquina:
 
 ## 📸 Capturas de Tela
 
-![Tela Inicial](C:\Users\visal\PycharmProjects\DjangoProject\images\tela_inicial.png)
+![Tela Inicial](tela_inicial.png)
 *Página inicial com a listagem do acervo.*
 
-![Tela de Cadastro](C:\Users\visal\PycharmProjects\DjangoProject\images\tela_cadastro.png)
+![Tela de Cadastro](tela_cadastro.png)
 *Formulário de cadastro de novo livro e validações.*
