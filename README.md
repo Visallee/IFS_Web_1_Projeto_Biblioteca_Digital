@@ -58,8 +58,8 @@ Siga o passo a passo abaixo para rodar a aplicação na sua máquina:
 
 ## 📸 Capturas de Tela
 
-![Tela Inicial](tela_inicial.png)
+<img width="1440" height="900" alt="tela_inicial" src="https://github.com/user-attachments/assets/e2c60bd1-5c3b-48d9-bfeb-2c70389c751a" />
 *Página inicial com a listagem do acervo.*
 
-![Tela de Cadastro](tela_cadastro.png)
+<img width="1440" height="900" alt="tela_cadastro" src="https://github.com/user-attachments/assets/82621242-2ca0-4167-afdb-5f260f4059c1" />
 *Formulário de cadastro de novo livro e validações.*
