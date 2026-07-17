@@ -3,9 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 import datetime
+import logging
 from .models import Livro, Categoria, Emprestimo
 from .forms import FormularioLivro, FormularioEmprestimo
 
+logger = logging.getLogger('app.auditoria')
 
 def lista_livros(request):
     livros = Livro.objects.select_related('categoria', 'cadastrado_por').all()
@@ -60,10 +62,7 @@ def criar_livro(request):
 
 @login_required
 def editar_livro(request, pk):
-    livro = get_object_or_404(Livro, pk=pk)
-    if livro.cadastrado_por != request.user:
-        messages.error(request, 'Você não tem permissão para editar este livro.')
-        return redirect('biblioteca:detalhe_livro', pk=pk)
+    livro = get_object_or_404(Livro, pk=pk, cadastrado_por=request.user)
     if request.method == 'POST':
         form = FormularioLivro(request.POST, instance=livro)
         if form.is_valid():
@@ -77,12 +76,10 @@ def editar_livro(request, pk):
 
 @login_required
 def excluir_livro(request, pk):
-    livro = get_object_or_404(Livro, pk=pk)
-    if livro.cadastrado_por != request.user:
-        messages.error(request, 'Você não tem permissão para excluir este livro.')
-        return redirect('biblioteca:detalhe_livro', pk=pk)
+    livro = get_object_or_404(Livro, pk=pk, cadastrado_por=request.user)
     if request.method == 'POST':
         titulo = livro.titulo
+        logger.info(f'EXCLUSÃO: O usuário {request.user.username} excluiu o livro {titulo} (ID: {livro.id}).')
         livro.delete()
         messages.success(request, f'Livro "{titulo}" excluído com sucesso!')
         return redirect('biblioteca:lista_livros')

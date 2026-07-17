@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9ricp&nj!*99dgp9+z5g^3b5q%xm_(5(y75q5q-@9c_fjzck6d'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-9ricp&nj!*99dgp9+z5g^3b5q%xm_(5(y75q5q-@9c_fjzck6d')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+SESSION_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
 
 
 # Application definition
@@ -56,8 +60,7 @@ ROOT_URLCONF = 'IFS_Web_1_Projeto_Biblioteca_Digital.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,6 +95,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {'min_length': 10},
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -122,10 +126,30 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 
-
-
-# Redirecionamentos de autenticação
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'auditoria': {
+            'format': '{asctime} [{levelname}] {name} | {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'auditoria',
+        },
+    },
+    'loggers': {
+        'app.auditoria': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
